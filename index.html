@@ -1,23 +1,30 @@
-```html
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 <title>Parth Goyal | Equity Research Portfolio</title>
 
 <style>
+
 *{
     margin:0;
     padding:0;
     box-sizing:border-box;
 }
 
+html{
+    scroll-behavior:smooth;
+}
+
 body{
-    font-family:Arial, sans-serif;
-    background:#0f172a;
+    font-family:Arial, Helvetica, sans-serif;
+    background:#081229;
     color:#e5e7eb;
-    line-height:1.7;
+    line-height:1.8;
+    font-size:18px;
 }
 
 .container{
@@ -27,231 +34,410 @@ body{
 }
 
 header{
+    min-height:100vh;
+    display:flex;
+    align-items:center;
+    justify-content:center;
     text-align:center;
-    padding:80px 20px;
+    padding:50px 20px;
 }
 
-header h1{
-    font-size:3rem;
-    margin-bottom:10px;
+.hero h1{
+    font-size:4rem;
+    margin-bottom:15px;
 }
 
-header h2{
-    color:#94a3b8;
+.hero h2{
+    font-size:1.3rem;
     font-weight:400;
+    color:#94a3b8;
     margin-bottom:20px;
+}
+
+.hero p{
+    color:#cbd5e1;
+    margin-bottom:30px;
 }
 
 .btn{
     display:inline-block;
-    padding:12px 22px;
+    padding:14px 24px;
+    margin:8px;
+    border-radius:8px;
+    text-decoration:none;
+    font-weight:600;
+    transition:.3s;
+}
+
+.primary{
     background:#2563eb;
     color:white;
-    text-decoration:none;
-    border-radius:8px;
-    margin:5px;
+}
+
+.secondary{
+    background:#1e293b;
+    color:white;
+}
+
+.btn:hover{
+    transform:translateY(-2px);
 }
 
 section{
-    padding:60px 0;
+    padding:80px 0;
 }
 
 .section-title{
-    font-size:2rem;
+    font-size:2.2rem;
     margin-bottom:25px;
     border-bottom:2px solid #1e293b;
-    padding-bottom:10px;
+    padding-bottom:12px;
 }
 
 .card{
     background:#111827;
-    padding:25px;
-    border-radius:12px;
-    margin-bottom:20px;
+    padding:30px;
+    border-radius:14px;
+    margin-bottom:25px;
 }
 
 .report-grid{
     display:grid;
-    grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+    grid-template-columns:repeat(auto-fit,minmax(300px,1fr));
     gap:20px;
 }
 
 .report{
     background:#111827;
-    padding:20px;
-    border-radius:12px;
-    transition:0.3s;
+    border-radius:14px;
+    padding:25px;
+    transition:.3s;
 }
 
 .report:hover{
-    transform:translateY(-4px);
+    transform:translateY(-5px);
+}
+
+.report h3{
+    margin-bottom:10px;
+}
+
+.report p{
+    margin-bottom:15px;
+    color:#cbd5e1;
 }
 
 .report a{
     color:#60a5fa;
     text-decoration:none;
+    font-weight:600;
+}
+
+.badge{
+    display:inline-block;
+    background:#1d4ed8;
+    color:white;
+    padding:5px 12px;
+    border-radius:50px;
+    font-size:14px;
+    margin-top:10px;
 }
 
 ul{
     padding-left:20px;
 }
 
+li{
+    margin-bottom:8px;
+}
+
+.skills-grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+    gap:20px;
+}
+
 footer{
     text-align:center;
     padding:40px;
     color:#94a3b8;
+    border-top:1px solid #1e293b;
 }
+
+.contact p{
+    margin-bottom:10px;
+}
+
+@media(max-width:768px){
+
+.hero h1{
+    font-size:2.5rem;
+}
+
+.hero h2{
+    font-size:1rem;
+}
+
+body{
+    font-size:16px;
+}
+
+}
+
 </style>
 </head>
 
 <body>
 
 <header>
-    <h1>Parth Goyal</h1>
 
-    <h2>
-        CFA Level III Candidate | Equity Research & Investment Analysis
-    </h2>
+<div class="hero">
 
-    <p>
-        Jaipur, Rajasthan, India
-    </p>
+<h1>Parth Goyal</h1>
 
-    <br>
+<h2>
+CFA Level III Candidate | Equity Research | Valuation | Investment Analysis
+</h2>
 
-    <a class="btn" href="Parth_Goyal_Resume.pdf" target="_blank">
-        Download Resume
-    </a>
+<p>
+Jaipur, Rajasthan, India
+</p>
 
-    <a class="btn" href="https://linkedin.com/in/9parthgoyal" target="_blank">
-        LinkedIn
-    </a>
+<a class="btn primary" href="Parth_Goyal_Resume.pdf" target="_blank">
+Download Resume
+</a>
+
+<a class="btn secondary" href="https://linkedin.com/in/9parthgoyal" target="_blank">
+LinkedIn
+</a>
+
+</div>
+
 </header>
 
 <div class="container">
 
 <section>
-    <h2 class="section-title">About Me</h2>
 
-    <div class="card">
-        <p>
-            Aspiring finance professional with CFA Level III candidacy and experience in equity research,
-            investment analysis, portfolio evaluation, and valuation methodologies.
-        </p>
+<h2 class="section-title">About Me</h2>
 
-        <br>
+<div class="card">
 
-        <p>
-            Areas of interest include Equity Research, Fundamental Analysis,
-            DCF Valuation, Portfolio Management, Capital Markets, and Investment Strategy.
-        </p>
-    </div>
+<p>
+I am a CFA Level III Candidate with a strong interest in equity research,
+valuation, portfolio management, and capital markets.
+</p>
+
+<br>
+
+<p>
+My work focuses on fundamental analysis, financial statement analysis,
+discounted cash flow valuation, comparable company analysis, and identifying
+long-term investment opportunities.
+</p>
+
+<br>
+
+<p>
+This portfolio showcases my research reports, valuation work, and investment
+ideas developed through independent research and professional experience.
+</p>
+
+</div>
+
 </section>
 
 <section>
-    <h2 class="section-title">Research Reports</h2>
 
-    <div class="report-grid">
+<h2 class="section-title">Experience</h2>
 
-        <div class="report">
-            <h3>Company Initiation Report</h3>
-            <p>Target company research and valuation.</p>
-            <br>
-            <a href="company-report-1.pdf" target="_blank">
-                View Report
-            </a>
-        </div>
+<div class="card">
 
-        <div class="report">
-            <h3>DCF Valuation Report</h3>
-            <p>Detailed intrinsic value assessment.</p>
-            <br>
-            <a href="dcf-report.pdf" target="_blank">
-                View Report
-            </a>
-        </div>
+<h3>Equity Research Analyst</h3>
 
-        <div class="report">
-            <h3>Industry Research Report</h3>
-            <p>Sector overview and outlook.</p>
-            <br>
-            <a href="industry-report.pdf" target="_blank">
-                View Report
-            </a>
-        </div>
+<p>
+Modani Financial Services Limited | Sep 2025 – Oct 2025
+</p>
 
-        <div class="report">
-            <h3>Earnings Update Note</h3>
-            <p>Quarterly performance analysis.</p>
-            <br>
-            <a href="earnings-update.pdf" target="_blank">
-                View Report
-            </a>
-        </div>
+<br>
 
-        <div class="report">
-            <h3>Investment Thesis</h3>
-            <p>Long-term investment recommendation.</p>
-            <br>
-            <a href="investment-thesis.pdf" target="_blank">
-                View Report
-            </a>
-        </div>
+<ul>
 
-    </div>
+<li>
+Evaluated investment portfolios of individual clients based on financial goals and risk profiles.
+</li>
+
+<li>
+Tracked monthly holdings of 20 AMCs across small-cap, mid-cap, large-cap and flexi-cap categories.
+</li>
+
+<li>
+Conducted market research and monitored investment opportunities across asset classes.
+</li>
+
+</ul>
+
+</div>
+
 </section>
 
 <section>
-    <h2 class="section-title">Skills</h2>
 
-    <div class="card">
-        <ul>
-            <li>Equity Research</li>
-            <li>Financial Statement Analysis</li>
-            <li>DCF Valuation</li>
-            <li>Comparable Company Analysis</li>
-            <li>Fundamental Analysis</li>
-            <li>Portfolio Management</li>
-            <li>Microsoft Excel</li>
-            <li>Python for Finance</li>
-            <li>Screener.in</li>
-            <li>Tickertape</li>
-        </ul>
-    </div>
+<h2 class="section-title">Featured Research</h2>
+
+<div class="card">
+
+<h3>Coming Soon</h3>
+
+<p>
+This section will feature my highest conviction investment idea and detailed valuation report.
+</p>
+
+<span class="badge">
+Research Report Coming Soon
+</span>
+
+</div>
+
 </section>
 
 <section>
-    <h2 class="section-title">Certifications</h2>
 
-    <div class="card">
-        <ul>
-            <li>CFA Program Level III Candidate</li>
-            <li>NISM Research Analyst</li>
-            <li>NISM Equity Derivatives</li>
-            <li>NSE Fundamental Analysis</li>
-            <li>NSE Technical Analysis</li>
-            <li>NSE Wealth Management</li>
-            <li>NCMP Level 1</li>
-        </ul>
-    </div>
+<h2 class="section-title">Research Reports</h2>
+
+<div class="report-grid">
+
+<div class="report">
+<h3>Company Initiation Report</h3>
+<p>Comprehensive company analysis and valuation.</p>
+<a href="#">Coming Soon</a>
+</div>
+
+<div class="report">
+<h3>DCF Valuation Report</h3>
+<p>Intrinsic value assessment using discounted cash flow methodology.</p>
+<a href="#">Coming Soon</a>
+</div>
+
+<div class="report">
+<h3>Industry Research Report</h3>
+<p>Sector overview, competitive landscape and growth outlook.</p>
+<a href="#">Coming Soon</a>
+</div>
+
+<div class="report">
+<h3>Earnings Update Note</h3>
+<p>Quarterly earnings review and investment implications.</p>
+<a href="#">Coming Soon</a>
+</div>
+
+<div class="report">
+<h3>Investment Thesis</h3>
+<p>Long-term investment idea supported by research and valuation.</p>
+<a href="#">Coming Soon</a>
+</div>
+
+<div class="report">
+<h3>Special Situation Report</h3>
+<p>Event-driven or opportunity-based investment analysis.</p>
+<a href="#">Coming Soon</a>
+</div>
+
+</div>
+
 </section>
 
 <section>
-    <h2 class="section-title">Contact</h2>
 
-    <div class="card">
-        <p>Email: 9parthgoyal@gmail.com</p>
-        <p>Location: Jaipur, Rajasthan, India</p>
-        <p>LinkedIn: linkedin.com/in/9parthgoyal</p>
-    </div>
+<h2 class="section-title">Core Skills</h2>
+
+<div class="skills-grid">
+
+<div class="card">
+<h3>Research & Valuation</h3>
+<ul>
+<li>Equity Research</li>
+<li>DCF Valuation</li>
+<li>Comparable Company Analysis</li>
+<li>Financial Statement Analysis</li>
+<li>Fundamental Analysis</li>
+</ul>
+</div>
+
+<div class="card">
+<h3>Markets & Investments</h3>
+<ul>
+<li>Portfolio Management</li>
+<li>Mutual Funds</li>
+<li>Equity Markets</li>
+<li>Fixed Income</li>
+<li>Equity Derivatives</li>
+</ul>
+</div>
+
+<div class="card">
+<h3>Technical Skills</h3>
+<ul>
+<li>Microsoft Excel</li>
+<li>Python for Finance</li>
+<li>Screener.in</li>
+<li>Tickertape</li>
+<li>Research Report Writing</li>
+</ul>
+</div>
+
+</div>
+
+</section>
+
+<section>
+
+<h2 class="section-title">Certifications</h2>
+
+<div class="card">
+
+<ul>
+
+<li>CFA Program Level III Candidate</li>
+<li>NISM Research Analyst Certification</li>
+<li>NISM Equity Derivatives Certification</li>
+<li>NSE Fundamental Analysis Module</li>
+<li>NSE Technical Analysis Module</li>
+<li>NSE Wealth Management Module</li>
+<li>NCMP Level I</li>
+
+</ul>
+
+</div>
+
+</section>
+
+<section>
+
+<h2 class="section-title">Contact</h2>
+
+<div class="card contact">
+
+<p><strong>Email:</strong> 9parthgoyal@gmail.com</p>
+
+<p><strong>Location:</strong> Jaipur, Rajasthan, India</p>
+
+<p><strong>LinkedIn:</strong> linkedin.com/in/9parthgoyal</p>
+
+</div>
+
 </section>
 
 </div>
 
 <footer>
-    © 2026 Parth Goyal | Equity Research Portfolio
+
+<p>
+© 2026 Parth Goyal | Equity Research Portfolio
+</p>
+
 </footer>
 
 </body>
 </html>
-```
+
