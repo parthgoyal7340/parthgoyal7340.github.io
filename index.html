@@ -1,408 +1,761 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-<title>Parth Goyal | Equity Research Portfolio</title>
-
+<title>Parth Goyal | Equity Research & Investment Analysis</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=DM+Serif+Display:ital@0;1&display=swap" rel="stylesheet">
 <style>
 
-*{
-margin:0;
-padding:0;
-box-sizing:border-box;
+:root {
+  --ink: #0a0e1a;
+  --ink-soft: #3d4460;
+  --ink-mute: #7b829a;
+  --surface: #ffffff;
+  --surface-2: #f4f5f8;
+  --surface-3: #eceef4;
+  --accent: #1a3cff;
+  --accent-soft: #e8ecff;
+  --gold: #c9922a;
+  --gold-soft: #fdf3e3;
+  --line: #e2e4ec;
+  --radius: 12px;
+  --radius-sm: 6px;
+  --mono: 'SF Mono', 'Fira Code', monospace;
 }
 
-html{
-scroll-behavior:smooth;
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+html { scroll-behavior: smooth; font-size: 16px; }
+
+body {
+  font-family: 'Inter', system-ui, sans-serif;
+  background: var(--surface);
+  color: var(--ink);
+  line-height: 1.7;
+  -webkit-font-smoothing: antialiased;
 }
 
-body{
-font-family:Arial, Helvetica, sans-serif;
-background:#081229;
-color:#e5e7eb;
-line-height:1.8;
-font-size:18px;
+/* ─── LAYOUT ─── */
+.wrap { width: min(92%, 1080px); margin: 0 auto; }
+.wrap-sm { width: min(92%, 720px); margin: 0 auto; }
+
+/* ─── NAV ─── */
+nav {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+  background: rgba(255,255,255,0.88);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--line);
+}
+.nav-inner {
+  display: flex; align-items: center; justify-content: space-between;
+  height: 56px; width: min(92%, 1080px); margin: 0 auto;
+}
+.nav-logo {
+  font-family: 'DM Serif Display', serif;
+  font-size: 1.1rem; color: var(--ink); text-decoration: none; letter-spacing: -0.01em;
+}
+.nav-links { display: flex; gap: 2rem; list-style: none; }
+.nav-links a {
+  font-size: 0.8rem; font-weight: 500; color: var(--ink-soft);
+  text-decoration: none; letter-spacing: 0.06em; text-transform: uppercase;
+  transition: color .2s;
+}
+.nav-links a:hover { color: var(--accent); }
+
+/* ─── HERO ─── */
+#hero {
+  min-height: 100vh;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0;
+  align-items: stretch;
+  padding-top: 56px;
+}
+.hero-left {
+  display: flex; flex-direction: column; justify-content: center;
+  padding: 80px 60px 80px 0;
+  border-right: 1px solid var(--line);
+}
+.hero-eyebrow {
+  display: flex; align-items: center; gap: 8px;
+  font-size: 0.72rem; font-weight: 600; letter-spacing: 0.12em;
+  text-transform: uppercase; color: var(--accent); margin-bottom: 28px;
+}
+.eyebrow-dot {
+  width: 6px; height: 6px; border-radius: 50%; background: var(--accent);
+}
+.hero-name {
+  font-family: 'DM Serif Display', serif;
+  font-size: clamp(3rem, 6vw, 5.5rem);
+  line-height: 1.0;
+  color: var(--ink);
+  letter-spacing: -0.02em;
+  margin-bottom: 24px;
+}
+.hero-name em { font-style: italic; color: var(--accent); }
+.hero-tagline {
+  font-size: 1.0rem; color: var(--ink-soft); max-width: 400px; margin-bottom: 40px; line-height: 1.7;
+}
+.hero-ctas { display: flex; gap: 12px; flex-wrap: wrap; }
+.btn {
+  display: inline-flex; align-items: center; gap: 8px;
+  padding: 12px 24px; border-radius: var(--radius-sm);
+  font-size: 0.85rem; font-weight: 600; text-decoration: none; transition: all .2s;
+  border: 1.5px solid transparent; white-space: nowrap;
+}
+.btn-primary {
+  background: var(--accent); color: white; border-color: var(--accent);
+}
+.btn-primary:hover { background: #0f28cc; border-color: #0f28cc; transform: translateY(-1px); }
+.btn-outline {
+  background: transparent; color: var(--ink); border-color: var(--line);
+}
+.btn-outline:hover { border-color: var(--ink-soft); transform: translateY(-1px); }
+
+.hero-right {
+  display: flex; flex-direction: column; justify-content: center;
+  padding: 80px 0 80px 60px; gap: 20px;
+}
+.stat-card {
+  border: 1px solid var(--line); border-radius: var(--radius);
+  padding: 24px 28px; background: var(--surface);
+  transition: border-color .2s, transform .2s;
+}
+.stat-card:hover { border-color: var(--accent); transform: translateX(4px); }
+.stat-card .label {
+  font-size: 0.7rem; font-weight: 600; text-transform: uppercase;
+  letter-spacing: 0.1em; color: var(--ink-mute); margin-bottom: 8px;
+}
+.stat-card .value {
+  font-family: 'DM Serif Display', serif; font-size: 2rem;
+  color: var(--ink); line-height: 1.1; margin-bottom: 4px;
+}
+.stat-card .sub {
+  font-size: 0.78rem; color: var(--ink-soft);
+}
+.stat-card.gold-card {
+  background: var(--gold-soft); border-color: #e8c67a;
+}
+.stat-card.gold-card .value { color: var(--gold); }
+.stat-card.gold-card .label { color: #b07a22; }
+
+/* ─── SECTIONS ─── */
+section { padding: 100px 0; }
+section:nth-child(even) { background: var(--surface-2); }
+
+.section-meta {
+  display: flex; align-items: center; gap: 12px; margin-bottom: 16px;
+}
+.section-num {
+  font-family: var(--mono); font-size: 0.7rem; color: var(--ink-mute); letter-spacing: 0.05em;
+}
+.section-rule { height: 1px; flex: 1; background: var(--line); max-width: 60px; }
+.section-h {
+  font-family: 'DM Serif Display', serif;
+  font-size: clamp(1.8rem, 3.5vw, 2.8rem);
+  line-height: 1.1; letter-spacing: -0.02em;
+  color: var(--ink); margin-bottom: 16px;
+}
+.section-sub { font-size: 0.95rem; color: var(--ink-soft); margin-bottom: 56px; max-width: 520px; }
+
+/* ─── ABOUT ─── */
+.about-grid { display: grid; grid-template-columns: 3fr 2fr; gap: 60px; align-items: start; }
+.about-body p { font-size: 1.0rem; color: var(--ink-soft); margin-bottom: 20px; line-height: 1.8; }
+.about-body p strong { color: var(--ink); font-weight: 600; }
+.about-sidebar { display: flex; flex-direction: column; gap: 20px; }
+.skill-block { border-left: 2px solid var(--accent); padding: 16px 20px; background: var(--accent-soft); border-radius: 0 var(--radius-sm) var(--radius-sm) 0; }
+.skill-block .sk-label { font-size: 0.72rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.1em; color: var(--accent); margin-bottom: 8px; }
+.skill-block .sk-list { font-size: 0.82rem; color: var(--ink-soft); line-height: 1.9; }
+
+/* ─── RESEARCH CARDS ─── */
+.reports-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px; }
+.report-card {
+  border: 1px solid var(--line); border-radius: var(--radius);
+  padding: 28px; background: var(--surface);
+  display: flex; flex-direction: column; gap: 12px;
+  transition: all .25s; position: relative; overflow: hidden;
+}
+.report-card::before {
+  content: ''; position: absolute; top: 0; left: 0;
+  width: 3px; height: 100%; background: var(--accent);
+  transform: scaleY(0); transform-origin: top;
+  transition: transform .25s;
+}
+.report-card:hover { border-color: var(--accent); transform: translateY(-3px); box-shadow: 0 8px 24px rgba(26,60,255,0.08); }
+.report-card:hover::before { transform: scaleY(1); }
+.report-icon {
+  width: 40px; height: 40px; border-radius: 8px;
+  background: var(--accent-soft); display: flex; align-items: center; justify-content: center;
+}
+.report-icon svg { width: 20px; height: 20px; stroke: var(--accent); fill: none; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; }
+.report-card h3 { font-size: 1.0rem; font-weight: 600; color: var(--ink); }
+.report-card p { font-size: 0.83rem; color: var(--ink-soft); line-height: 1.6; flex: 1; }
+.tag {
+  display: inline-block; font-size: 0.7rem; font-weight: 600;
+  padding: 4px 10px; border-radius: 100px;
+  background: var(--surface-3); color: var(--ink-soft); letter-spacing: 0.04em;
+}
+.tag.coming { background: var(--gold-soft); color: var(--gold); }
+.report-link { font-size: 0.82rem; font-weight: 600; color: var(--accent); text-decoration: none; }
+.report-link:hover { text-decoration: underline; }
+
+/* ─── FEATURED ─── */
+.featured-box {
+  border: 1px solid var(--line); border-radius: var(--radius);
+  padding: 48px; background: var(--surface);
+  display: grid; grid-template-columns: 1fr 1fr; gap: 48px; align-items: center;
+}
+.featured-box .big-label {
+  font-family: var(--mono); font-size: 0.7rem; color: var(--ink-mute);
+  text-transform: uppercase; letter-spacing: 0.12em; margin-bottom: 16px;
+}
+.featured-box h3 {
+  font-family: 'DM Serif Display', serif;
+  font-size: 2rem; line-height: 1.15; letter-spacing: -0.02em;
+  color: var(--ink); margin-bottom: 16px;
+}
+.featured-box p { font-size: 0.9rem; color: var(--ink-soft); line-height: 1.7; margin-bottom: 28px; }
+.featured-placeholder {
+  background: var(--surface-3); border-radius: var(--radius);
+  aspect-ratio: 4/3; display: flex; flex-direction: column;
+  align-items: center; justify-content: center; gap: 12px;
+  border: 1.5px dashed var(--line); color: var(--ink-mute);
+}
+.featured-placeholder svg { width: 32px; height: 32px; stroke: currentColor; fill: none; stroke-width: 1.5; }
+.featured-placeholder span { font-size: 0.78rem; font-weight: 500; }
+
+/* ─── QUALIFICATIONS ─── */
+.quals-list { display: flex; flex-direction: column; gap: 0; border: 1px solid var(--line); border-radius: var(--radius); overflow: hidden; }
+.qual-row {
+  display: grid; grid-template-columns: auto 1fr auto;
+  gap: 24px; align-items: center; padding: 24px 32px;
+  border-bottom: 1px solid var(--line); background: var(--surface);
+  transition: background .15s;
+}
+.qual-row:last-child { border-bottom: none; }
+.qual-row:hover { background: var(--surface-2); }
+.qual-index { font-family: var(--mono); font-size: 0.7rem; color: var(--ink-mute); }
+.qual-info h4 { font-size: 0.95rem; font-weight: 600; color: var(--ink); }
+.qual-info p { font-size: 0.8rem; color: var(--ink-soft); }
+.qual-badge {
+  font-size: 0.68rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em;
+  padding: 5px 12px; border-radius: 100px; white-space: nowrap;
+}
+.badge-active { background: #dcfce7; color: #15803d; }
+.badge-cleared { background: #e0e7ff; color: #4338ca; }
+.badge-cert { background: var(--surface-3); color: var(--ink-soft); }
+
+/* ─── CERTS GRID ─── */
+.certs-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 16px; }
+.cert-card {
+  border: 1px solid var(--line); border-radius: var(--radius);
+  padding: 22px 24px; background: var(--surface);
+  display: flex; flex-direction: column; gap: 8px;
+  transition: all .2s;
+}
+.cert-card:hover { border-color: var(--ink-soft); transform: translateY(-2px); }
+.cert-issuer { font-size: 0.68rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; color: var(--ink-mute); }
+.cert-name { font-size: 0.92rem; font-weight: 600; color: var(--ink); line-height: 1.3; }
+.cert-code { font-family: var(--mono); font-size: 0.7rem; color: var(--ink-mute); }
+.cert-link { font-size: 0.78rem; font-weight: 600; color: var(--accent); text-decoration: none; }
+.cert-link:hover { text-decoration: underline; }
+
+/* ─── CONTACT ─── */
+#contact { background: var(--ink); }
+#contact .section-h { color: white; }
+#contact .section-num { color: rgba(255,255,255,0.3); }
+#contact .section-rule { background: rgba(255,255,255,0.15); }
+#contact .section-sub { color: rgba(255,255,255,0.55); }
+.contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center; }
+.contact-left p { font-size: 1.0rem; color: rgba(255,255,255,0.6); line-height: 1.8; margin-bottom: 32px; }
+.contact-ctas { display: flex; flex-direction: column; gap: 12px; }
+.contact-item {
+  display: flex; align-items: center; gap: 16px;
+  padding: 20px 24px; border-radius: var(--radius);
+  border: 1px solid rgba(255,255,255,0.1); text-decoration: none;
+  transition: all .2s; background: rgba(255,255,255,0.04);
+}
+.contact-item:hover { background: rgba(255,255,255,0.08); border-color: rgba(255,255,255,0.2); transform: translateX(4px); }
+.contact-item-icon {
+  width: 40px; height: 40px; border-radius: 8px;
+  background: rgba(255,255,255,0.1); display: flex; align-items: center; justify-content: center; flex-shrink: 0;
+}
+.contact-item-icon svg { width: 18px; height: 18px; stroke: white; fill: none; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; }
+.contact-item-label { font-size: 0.72rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.1em; color: rgba(255,255,255,0.4); margin-bottom: 2px; }
+.contact-item-val { font-size: 0.88rem; font-weight: 500; color: white; }
+.contact-right { display: flex; flex-direction: column; gap: 20px; }
+.contact-stat {
+  border-left: 2px solid rgba(255,255,255,0.15); padding: 16px 24px;
+}
+.contact-stat .num {
+  font-family: 'DM Serif Display', serif; font-size: 2.2rem; color: white; letter-spacing: -0.02em;
+}
+.contact-stat .desc { font-size: 0.78rem; color: rgba(255,255,255,0.4); margin-top: 2px; }
+
+/* ─── FOOTER ─── */
+footer {
+  padding: 32px 0; text-align: center;
+  font-size: 0.75rem; color: var(--ink-mute);
+  border-top: 1px solid var(--line);
 }
 
-.container{
-width:90%;
-max-width:1150px;
-margin:auto;
+/* ─── TICKER ─── */
+.ticker-wrap {
+  overflow: hidden; border-top: 1px solid var(--line); border-bottom: 1px solid var(--line);
+  background: var(--surface-2); padding: 10px 0;
+}
+.ticker-track {
+  display: flex; gap: 0; width: max-content;
+  animation: ticker 30s linear infinite;
+}
+.ticker-track:hover { animation-play-state: paused; }
+@keyframes ticker {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+.ticker-item {
+  display: flex; align-items: center; gap: 8px;
+  padding: 0 32px; font-size: 0.72rem; font-weight: 600;
+  white-space: nowrap; letter-spacing: 0.05em; color: var(--ink-soft);
+}
+.ticker-item .t-dot {
+  width: 4px; height: 4px; border-radius: 50%;
+  background: var(--accent); flex-shrink: 0;
 }
 
-header{
-min-height:100vh;
-display:flex;
-justify-content:center;
-align-items:center;
-text-align:center;
-padding:40px;
+/* ─── RESPONSIVE ─── */
+@media (max-width: 900px) {
+  #hero { grid-template-columns: 1fr; }
+  .hero-left { padding: 60px 0 40px; border-right: none; border-bottom: 1px solid var(--line); }
+  .hero-right { padding: 40px 0 60px; }
+  .about-grid { grid-template-columns: 1fr; }
+  .featured-box { grid-template-columns: 1fr; }
+  .contact-grid { grid-template-columns: 1fr; }
+  .qual-row { grid-template-columns: 1fr auto; }
+  .qual-index { display: none; }
 }
-
-.hero h1{
-font-size:4rem;
-margin-bottom:15px;
-}
-
-.hero h2{
-font-size:1.3rem;
-font-weight:400;
-color:#94a3b8;
-margin-bottom:15px;
-}
-
-.hero p{
-color:#cbd5e1;
-margin-bottom:25px;
-}
-
-.btn{
-display:inline-block;
-padding:14px 24px;
-margin:6px;
-border-radius:8px;
-text-decoration:none;
-font-weight:600;
-transition:.3s;
-}
-
-.btn:hover{
-transform:translateY(-3px);
-}
-
-.primary{
-background:#2563eb;
-color:white;
-}
-
-.secondary{
-background:#1e293b;
-color:white;
-}
-
-section{
-padding:70px 0;
-}
-
-.section-title{
-font-size:2.2rem;
-margin-bottom:25px;
-padding-bottom:10px;
-border-bottom:2px solid #1e293b;
-}
-
-.card{
-background:#111827;
-padding:30px;
-border-radius:14px;
-margin-bottom:20px;
-}
-
-.grid{
-display:grid;
-grid-template-columns:repeat(auto-fit,minmax(300px,1fr));
-gap:20px;
-}
-
-.report{
-background:#111827;
-padding:25px;
-border-radius:14px;
-transition:.3s;
-}
-
-.report:hover{
-transform:translateY(-5px);
-}
-
-.report h3{
-margin-bottom:10px;
-}
-
-.report p{
-margin-bottom:12px;
-color:#cbd5e1;
-}
-
-.report a{
-text-decoration:none;
-color:#60a5fa;
-font-weight:600;
-}
-
-.badge{
-display:inline-block;
-background:#1d4ed8;
-padding:6px 12px;
-border-radius:30px;
-font-size:14px;
-margin-top:10px;
-}
-
-ul{
-padding-left:20px;
-}
-
-li{
-margin-bottom:8px;
-}
-
-footer{
-padding:40px;
-text-align:center;
-color:#94a3b8;
-border-top:1px solid #1e293b;
-}
-
-.contact p{
-margin-bottom:10px;
-}
-
-@media(max-width:768px){
-
-.hero h1{
-font-size:2.5rem;
-}
-
-.hero h2{
-font-size:1rem;
-}
-
-body{
-font-size:16px;
-}
-
+@media (max-width: 600px) {
+  .nav-links { display: none; }
+  section { padding: 64px 0; }
+  .hero-name { font-size: 2.8rem; }
 }
 
 </style>
 </head>
-
 <body>
 
-<header>
+<!-- NAV -->
+<nav>
+  <div class="nav-inner">
+    <a class="nav-logo" href="#hero">Parth Goyal</a>
+    <ul class="nav-links">
+      <li><a href="#about">About</a></li>
+      <li><a href="#research">Research</a></li>
+      <li><a href="#qualifications">Credentials</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </div>
+</nav>
 
-<div class="hero">
-
-<h1>Parth Goyal</h1>
-
-<h2>
-CFA Level III Candidate | Equity Research & Investment Analysis
-</h2>
-
-<p>
-Jaipur, Rajasthan, India
-</p>
-
-<a class="btn primary" href="PARTH GOYAL RESUME.pdf" target="_blank">
-Resume
-</a>
-
-<a class="btn secondary" href="https://linkedin.com/in/9parthgoyal" target="_blank">
-LinkedIn
-</a>
-
-</div>
-
-</header>
-
-<div class="container">
-
-<section>
-
-<h2 class="section-title">About Me</h2>
-
-<div class="card">
-
-<p>
-Aspiring finance professional with CFA Level III candidacy and a strong interest
-in equity research, valuation, portfolio management, and capital markets.
-</p>
-
-<br>
-
-<p>
-My work focuses on fundamental analysis, financial statement analysis,
-discounted cash flow valuation, comparable company analysis, portfolio
-construction, and investment research.
-</p>
-
-<br>
-
-<p>
-This portfolio serves as a repository for my research reports, valuation work,
-industry studies, and investment theses.
-</p>
-
-</div>
-
+<!-- HERO -->
+<section id="hero">
+  <div class="wrap" style="display:contents;">
+    <div class="hero-left" style="padding-left: max(4vw, calc((100vw - 1080px)/2 + 4vw));">
+      <div class="hero-eyebrow">
+        <span class="eyebrow-dot"></span>
+        Available for equity research roles
+      </div>
+      <h1 class="hero-name">Parth<br><em>Goyal</em></h1>
+      <p class="hero-tagline">CFA Level III candidate building deep expertise in fundamental analysis, valuation, and capital markets — from Jaipur to the markets.</p>
+      <div class="hero-ctas">
+        <a class="btn btn-primary" href="PARTH GOYAL RESUME.pdf" target="_blank">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+          Download Resume
+        </a>
+        <a class="btn btn-outline" href="https://linkedin.com/in/9parthgoyal" target="_blank">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
+          LinkedIn
+        </a>
+      </div>
+    </div>
+    <div class="hero-right" style="padding-right: max(4vw, calc((100vw - 1080px)/2 + 4vw));">
+      <div class="stat-card gold-card">
+        <div class="label">CFA Program Progress</div>
+        <div class="value">III</div>
+        <div class="sub">Level III Candidate · August 2026 Exam</div>
+      </div>
+      <div class="stat-card">
+        <div class="label">Certifications Held</div>
+        <div class="value">10+</div>
+        <div class="sub">NISM · NSE Academy · CFA Institute</div>
+      </div>
+      <div class="stat-card">
+        <div class="label">Core Focus Areas</div>
+        <div class="value" style="font-size:1.1rem; line-height:1.5;">Equity Research & Valuation</div>
+        <div class="sub">DCF · Comps · Portfolio Management · FSA</div>
+      </div>
+    </div>
+  </div>
 </section>
 
-<section>
-
-<h2 class="section-title">Featured Research</h2>
-
-<div class="card">
-
-<h3>Featured Investment Thesis</h3>
-
-<p>
-My highest-conviction research idea and detailed valuation report will be showcased here.
-</p>
-
-<span class="badge">
-Coming Soon
-</span>
-
+<!-- TICKER -->
+<div class="ticker-wrap" aria-hidden="true">
+  <div class="ticker-track" id="ticker">
+    <div class="ticker-item"><span class="t-dot"></span>Equity Research</div>
+    <div class="ticker-item"><span class="t-dot"></span>DCF Valuation</div>
+    <div class="ticker-item"><span class="t-dot"></span>Financial Statement Analysis</div>
+    <div class="ticker-item"><span class="t-dot"></span>CFA Level III Candidate</div>
+    <div class="ticker-item"><span class="t-dot"></span>Comparable Company Analysis</div>
+    <div class="ticker-item"><span class="t-dot"></span>Portfolio Management</div>
+    <div class="ticker-item"><span class="t-dot"></span>NISM Research Analyst</div>
+    <div class="ticker-item"><span class="t-dot"></span>Capital Markets</div>
+    <div class="ticker-item"><span class="t-dot"></span>CA Intermediate Cleared</div>
+    <div class="ticker-item"><span class="t-dot"></span>Investment Thesis</div>
+    <div class="ticker-item"><span class="t-dot"></span>Equity Research</div>
+    <div class="ticker-item"><span class="t-dot"></span>DCF Valuation</div>
+    <div class="ticker-item"><span class="t-dot"></span>Financial Statement Analysis</div>
+    <div class="ticker-item"><span class="t-dot"></span>CFA Level III Candidate</div>
+    <div class="ticker-item"><span class="t-dot"></span>Comparable Company Analysis</div>
+    <div class="ticker-item"><span class="t-dot"></span>Portfolio Management</div>
+    <div class="ticker-item"><span class="t-dot"></span>NISM Research Analyst</div>
+    <div class="ticker-item"><span class="t-dot"></span>Capital Markets</div>
+    <div class="ticker-item"><span class="t-dot"></span>CA Intermediate Cleared</div>
+    <div class="ticker-item"><span class="t-dot"></span>Investment Thesis</div>
+  </div>
 </div>
 
+<!-- ABOUT -->
+<section id="about">
+  <div class="wrap">
+    <div class="section-meta">
+      <span class="section-num">01</span>
+      <div class="section-rule"></div>
+    </div>
+    <h2 class="section-h">The Analyst Behind<br>the Numbers</h2>
+    <div class="about-grid">
+      <div class="about-body">
+        <p>I'm a finance professional based in <strong>Jaipur, Rajasthan</strong>, focused on building a rigorous foundation in equity research and investment analysis. My work is grounded in first-principles thinking — understanding a business before modelling it.</p>
+        <p>I've cleared <strong>CFA Levels I and II</strong> and am registered for the Level III exam in August 2026. I've also cleared <strong>CA Intermediate</strong>, which has given me strong command of financial accounting, taxation, and corporate law — tools that matter when you're reading an annual report, not just a summary.</p>
+        <p>My research approach combines <strong>fundamental analysis</strong>, detailed financial statement deep-dives, and DCF/comparables-based valuation. I'm interested in both large-cap coverage and identifying mispriced small/mid-cap opportunities in Indian equities.</p>
+        <p>This site is a living repository of my research output. Reports, theses, and industry work will be published here as they're completed.</p>
+      </div>
+      <div class="about-sidebar">
+        <div class="skill-block">
+          <div class="sk-label">Valuation Methods</div>
+          <div class="sk-list">Discounted Cash Flow (DCF)<br>Comparable Company Analysis<br>Precedent Transactions<br>Dividend Discount Model<br>EV/EBITDA, P/E, P/B multiples</div>
+        </div>
+        <div class="skill-block">
+          <div class="sk-label">Research Skills</div>
+          <div class="sk-list">Financial Statement Analysis<br>Industry & Competitive Analysis<br>Earnings Model Building<br>Investment Thesis Writing<br>Screener.in · Bloomberg concepts</div>
+        </div>
+        <div class="skill-block">
+          <div class="sk-label">Tools & Languages</div>
+          <div class="sk-list">Microsoft Excel (Advanced)<br>Python (Finance Applications)<br>NSE / BSE Data Sources<br>SEBI Filings & DRHP Analysis</div>
+        </div>
+      </div>
+    </div>
+  </div>
 </section>
 
-<section>
-
-<h2 class="section-title">Research Reports</h2>
-
-<div class="grid">
-
-<div class="report">
-<h3>Company Initiation Report</h3>
-<p>Detailed company analysis and valuation.</p>
-<a href="#">Coming Soon</a>
-</div>
-
-<div class="report">
-<h3>DCF Valuation Report</h3>
-<p>Intrinsic value assessment using DCF methodology.</p>
-<a href="#">Coming Soon</a>
-</div>
-
-<div class="report">
-<h3>Industry Research Report</h3>
-<p>Industry overview and competitive landscape.</p>
-<a href="#">Coming Soon</a>
-</div>
-
-<div class="report">
-<h3>Earnings Update Note</h3>
-<p>Quarterly earnings review and outlook.</p>
-<a href="#">Coming Soon</a>
-</div>
-
-<div class="report">
-<h3>Investment Thesis</h3>
-<p>Long-term investment opportunity analysis.</p>
-<a href="#">Coming Soon</a>
-</div>
-
-<div class="report">
-<h3>Special Situation Report</h3>
-<p>Event-driven investment opportunities.</p>
-<a href="#">Coming Soon</a>
-</div>
-
-</div>
-
+<!-- FEATURED -->
+<section id="featured" style="background: var(--surface-2);">
+  <div class="wrap">
+    <div class="section-meta">
+      <span class="section-num">02</span>
+      <div class="section-rule"></div>
+    </div>
+    <h2 class="section-h">Featured Research</h2>
+    <p class="section-sub">My highest-conviction investment thesis — a detailed, original research report with full valuation work, will be published here.</p>
+    <div class="featured-box">
+      <div>
+        <div class="big-label">Featured Thesis · Coming Soon</div>
+        <h3>Initiating Coverage:<br>High-Conviction Idea</h3>
+        <p>A deep-dive initiation report on an Indian-listed company — covering business model quality, competitive moat, earnings trajectory, and a DCF-backed target price. Built from scratch using publicly available filings, annual reports, and channel checks.</p>
+        <a class="btn btn-primary" href="#research">See All Research ↓</a>
+      </div>
+      <div class="featured-placeholder">
+        <svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>
+        <span>Report publishing soon</span>
+      </div>
+    </div>
+  </div>
 </section>
 
+<!-- RESEARCH REPORTS -->
+<section id="research">
+  <div class="wrap">
+    <div class="section-meta">
+      <span class="section-num">03</span>
+      <div class="section-rule"></div>
+    </div>
+    <h2 class="section-h">Research Reports</h2>
+    <p class="section-sub">Original equity research, valuation models, and investment theses. All work is independent and based on publicly available information.</p>
+    <div class="reports-grid">
 
-<section>
+      <div class="report-card">
+        <div class="report-icon">
+          <svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/></svg>
+        </div>
+        <h3>Company Initiation Report</h3>
+        <p>End-to-end company analysis: business model, competitive positioning, management quality assessment, and a full valuation with price target.</p>
+        <span class="tag coming">Coming Soon</span>
+      </div>
 
-<h2 class="section-title">Professional Qualifications</h2>
+      <div class="report-card">
+        <div class="report-icon">
+          <svg viewBox="0 0 24 24"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+        </div>
+        <h3>DCF Valuation Model</h3>
+        <p>A detailed intrinsic value assessment using multi-scenario DCF, with explicit revenue build, margin bridge, WACC derivation, and sensitivity tables.</p>
+        <span class="tag coming">Coming Soon</span>
+      </div>
 
-<div class="card">
+      <div class="report-card">
+        <div class="report-icon">
+          <svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg>
+        </div>
+        <h3>Industry Research Note</h3>
+        <p>Sector-level analysis covering market structure, regulatory environment, competitive dynamics, and key stock selection frameworks within the industry.</p>
+        <span class="tag coming">Coming Soon</span>
+      </div>
 
-<ul>
+      <div class="report-card">
+        <div class="report-icon">
+          <svg viewBox="0 0 24 24"><path d="M18 20V10M12 20V4M6 20v-6"/></svg>
+        </div>
+        <h3>Earnings Update Note</h3>
+        <p>Post-results flash note covering revenue/margin surprises, management commentary, key KPI movements, and a revised forward estimate with rating.</p>
+        <span class="tag coming">Coming Soon</span>
+      </div>
 
-<li>
-CFA Program – Level III Candidate (Registered)
-</li>
+      <div class="report-card">
+        <div class="report-icon">
+          <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+        </div>
+        <h3>Special Situation Report</h3>
+        <p>Event-driven opportunity analysis: spin-offs, demergers, turnarounds, or post-IPO mispricings where catalysts can unlock significant value.</p>
+        <span class="tag coming">Coming Soon</span>
+      </div>
 
-</ul>
+      <div class="report-card">
+        <div class="report-icon">
+          <svg viewBox="0 0 24 24"><path d="M2 20h.01M7 20v-4M12 20v-8M17 20V8M22 4l-5 5-4-4L7 11"/></svg>
+        </div>
+        <h3>Long-term Investment Thesis</h3>
+        <p>A multi-year thesis on a structural growth story — focused on what the market is underpricing and the time horizon over which value should be realised.</p>
+        <span class="tag coming">Coming Soon</span>
+      </div>
 
-</div>
-
+    </div>
+  </div>
 </section>
 
-<section>
-
-<h2 class="section-title">Certifications & Licenses</h2>
-
-<div class="grid">
-
-<div class="report">
-<h3>NISM Research Analyst</h3>
-<p>NISM-Series-XV Research Analyst Certification</p>
-<a href="NISM-XV.pdf" target="_blank">View Certificate</a>
-</div>
-
-<div class="report">
-<h3>NISM Equity Derivatives</h3>
-<p>NISM-Series-VIII Equity Derivatives Certification</p>
-<a href="NISM-VIII.pdf" target="_blank">View Certificate</a>
-</div>
-
-<div class="report">
-<h3>Fundamental Analysis</h3>
-<p>NSE Academy Certification</p>
-<a href="Fundamental_Analysis.pdf" target="_blank">View Certificate</a>
-</div>
-
-<div class="report">
-<h3>Investment Analysis & Portfolio Management</h3>
-<p>NSE Academy Certification</p>
-<a href="Investment Analysis.pdf" target="_blank">View Certificate</a>
-</div>
-
-<div class="report">
-<h3>Technical Analysis</h3>
-<p>NSE Academy Certification</p>
-<a href="Technical Analysis Module.pdf" target="_blank">View Certificate</a>
-</div>
-
-<div class="report">
-<h3>Wealth Management</h3>
-<p>NSE Academy Certification</p>
-<a href="Wealth Management Module.pdf" target="_blank">View Certificate</a>
-</div>
-
-<div class="report">
-<h3>CFA Access Scholarship</h3>
-<p>CFA Institute</p>
-<a href="#">Coming Soon</a>
-</div>
-
-<div class="report">
-<h3>NCMP Level I</h3>
-<p>NSE Academy</p>
-<a href="#">Coming Soon</a>
-</div>
-
-<div class="report">
-<h3>Investment Analyst Champion</h3>
-<p>NSE Academy</p>
-<a href="#">Coming Soon</a>
-</div>
-
-<div class="report">
-<h3>Investment Analyst Pro</h3>
-<p>NSE Academy</p>
-<a href="#">Coming Soon</a>
-</div>
-
-<div class="report">
-<h3>Equity Research Cohort</h3>
-<p>The Valuation School</p>
-<a href="#">Coming Soon</a>
-</div>
-
-<div class="report">
-<h3>Technical Analysis Workshop</h3>
-<p>The Valuation School</p>
-<a href="#">Coming Soon</a>
-</div>
-</div>
+<!-- QUALIFICATIONS -->
+<section id="qualifications" style="background: var(--surface-2);">
+  <div class="wrap">
+    <div class="section-meta">
+      <span class="section-num">04</span>
+      <div class="section-rule"></div>
+    </div>
+    <h2 class="section-h">Credentials</h2>
+    <p class="section-sub">Professional qualifications and examination track record.</p>
+    <div class="quals-list">
+      <div class="qual-row">
+        <span class="qual-index">01</span>
+        <div class="qual-info">
+          <h4>CFA Program — Level III</h4>
+          <p>CFA Institute · Registered for August 2026 exam · Portfolio Management, Asset Allocation, Risk Management</p>
+        </div>
+        <span class="qual-badge badge-active">In Progress</span>
+      </div>
+      <div class="qual-row">
+        <span class="qual-index">02</span>
+        <div class="qual-info">
+          <h4>CFA Program — Level II</h4>
+          <p>CFA Institute · Cleared · Equity Valuation, Fixed Income, Derivatives, Alternative Investments</p>
+        </div>
+        <span class="qual-badge badge-cleared">Cleared</span>
+      </div>
+      <div class="qual-row">
+        <span class="qual-index">03</span>
+        <div class="qual-info">
+          <h4>CFA Program — Level I</h4>
+          <p>CFA Institute · Cleared · Financial Reporting, Quantitative Methods, Economics</p>
+        </div>
+        <span class="qual-badge badge-cleared">Cleared</span>
+      </div>
+      <div class="qual-row">
+        <span class="qual-index">04</span>
+        <div class="qual-info">
+          <h4>CA Intermediate</h4>
+          <p>Institute of Chartered Accountants of India · Cleared January 2025 · Accounting, Auditing, Taxation, Law</p>
+        </div>
+        <span class="qual-badge badge-cleared">Cleared</span>
+      </div>
+      <div class="qual-row">
+        <span class="qual-index">05</span>
+        <div class="qual-info">
+          <h4>CFA Access Scholarship</h4>
+          <p>CFA Institute · Merit-based scholarship for the CFA Program</p>
+        </div>
+        <span class="qual-badge badge-cert">Awarded</span>
+      </div>
+    </div>
+  </div>
 </section>
+
+<!-- CERTIFICATIONS -->
+<section id="certs">
+  <div class="wrap">
+    <div class="section-meta">
+      <span class="section-num">05</span>
+      <div class="section-rule"></div>
+    </div>
+    <h2 class="section-h">Certifications</h2>
+    <p class="section-sub">Regulatory certifications and professional development credentials from SEBI-recognised bodies.</p>
+    <div class="certs-grid">
+
+      <div class="cert-card">
+        <div class="cert-issuer">NISM</div>
+        <div class="cert-name">Research Analyst Certification</div>
+        <div class="cert-code">NISM-Series-XV</div>
+        <a class="cert-link" href="NISM-XV.pdf" target="_blank">View Certificate →</a>
+      </div>
+
+      <div class="cert-card">
+        <div class="cert-issuer">NISM</div>
+        <div class="cert-name">Equity Derivatives Certification</div>
+        <div class="cert-code">NISM-Series-VIII</div>
+        <a class="cert-link" href="NISM-VIII.pdf" target="_blank">View Certificate →</a>
+      </div>
+
+      <div class="cert-card">
+        <div class="cert-issuer">NSE Academy</div>
+        <div class="cert-name">Fundamental Analysis</div>
+        <div class="cert-code">NSE Certification</div>
+        <a class="cert-link" href="Fundamental_Analysis.pdf" target="_blank">View Certificate →</a>
+      </div>
+
+      <div class="cert-card">
+        <div class="cert-issuer">NSE Academy</div>
+        <div class="cert-name">Investment Analysis & Portfolio Management</div>
+        <div class="cert-code">NSE Certification</div>
+        <a class="cert-link" href="Investment Analysis.pdf" target="_blank">View Certificate →</a>
+      </div>
+
+      <div class="cert-card">
+        <div class="cert-issuer">NSE Academy</div>
+        <div class="cert-name">Technical Analysis</div>
+        <div class="cert-code">NSE Certification</div>
+        <a class="cert-link" href="Technical Analysis Module.pdf" target="_blank">View Certificate →</a>
+      </div>
+
+      <div class="cert-card">
+        <div class="cert-issuer">NSE Academy</div>
+        <div class="cert-name">Wealth Management</div>
+        <div class="cert-code">NSE Certification</div>
+        <a class="cert-link" href="Wealth Management Module.pdf" target="_blank">View Certificate →</a>
+      </div>
+
+      <div class="cert-card">
+        <div class="cert-issuer">NSE Academy</div>
+        <div class="cert-name">NCMP Level I</div>
+        <div class="cert-code">NSE Capital Market Proficiency</div>
+        <span class="tag coming" style="font-size:0.68rem;">Coming Soon</span>
+      </div>
+
+      <div class="cert-card">
+        <div class="cert-issuer">NSE Academy</div>
+        <div class="cert-name">Investment Analyst Champion</div>
+        <div class="cert-code">NSE Competition Award</div>
+        <span class="tag coming" style="font-size:0.68rem;">Coming Soon</span>
+      </div>
+
+      <div class="cert-card">
+        <div class="cert-issuer">NSE Academy</div>
+        <div class="cert-name">Investment Analyst Pro</div>
+        <div class="cert-code">NSE Certification</div>
+        <span class="tag coming" style="font-size:0.68rem;">Coming Soon</span>
+      </div>
+
+      <div class="cert-card">
+        <div class="cert-issuer">The Valuation School</div>
+        <div class="cert-name">Equity Research Cohort</div>
+        <div class="cert-code">Professional Programme</div>
+        <span class="tag coming" style="font-size:0.68rem;">Coming Soon</span>
+      </div>
+
+      <div class="cert-card">
+        <div class="cert-issuer">The Valuation School</div>
+        <div class="cert-name">Technical Analysis Workshop</div>
+        <div class="cert-code">Professional Programme</div>
+        <span class="tag coming" style="font-size:0.68rem;">Coming Soon</span>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="wrap">
+    <div class="section-meta">
+      <span class="section-num">06</span>
+      <div class="section-rule"></div>
+    </div>
+    <h2 class="section-h">Let's Connect</h2>
+    <p class="section-sub">Open to equity research roles, internships, and conversations about markets. Based in Jaipur — open to relocation.</p>
+    <div class="contact-grid">
+      <div class="contact-left">
+        <p>If you're a recruiter, portfolio manager, or fellow analyst — I'd love to talk. I'm particularly interested in fundamental research roles at asset managers, brokerages, and investment banks covering Indian equities.</p>
+        <div class="contact-ctas">
+          <a class="contact-item" href="https://linkedin.com/in/9parthgoyal" target="_blank">
+            <div class="contact-item-icon">
+              <svg viewBox="0 0 24 24"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
+            </div>
+            <div>
+              <div class="contact-item-label">LinkedIn</div>
+              <div class="contact-item-val">linkedin.com/in/9parthgoyal</div>
+            </div>
+          </a>
+          <a class="contact-item" href="PARTH GOYAL RESUME.pdf" target="_blank">
+            <div class="contact-item-icon">
+              <svg viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+            </div>
+            <div>
+              <div class="contact-item-label">Resume</div>
+              <div class="contact-item-val">Download PDF</div>
+            </div>
+          </a>
+        </div>
+      </div>
+      <div class="contact-right">
+        <div class="contact-stat">
+          <div class="num">III</div>
+          <div class="desc">CFA levels completed or in progress</div>
+        </div>
+        <div class="contact-stat">
+          <div class="num">10+</div>
+          <div class="desc">Professional certifications across research, derivatives & portfolio management</div>
+        </div>
+        <div class="contact-stat">
+          <div class="num">2026</div>
+          <div class="desc">Expected CFA charterholder (post-August exam & work experience)</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <p>Parth Goyal · Jaipur, Rajasthan · Built to show work, not just credentials.</p>
+  </div>
+</footer>
+
 </body>
 </html>
