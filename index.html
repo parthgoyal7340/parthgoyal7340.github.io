@@ -27,289 +27,147 @@
 }
 
 *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
-
 html { scroll-behavior: smooth; font-size: 16px; }
-
 body {
   font-family: 'Inter', system-ui, sans-serif;
   background: var(--surface);
   color: var(--ink);
-  line-height: 1.7;
+  line-height: 1.6;
   -webkit-font-smoothing: antialiased;
 }
 
-/* ─── LAYOUT ─── */
 .wrap { width: min(92%, 1080px); margin: 0 auto; }
-.wrap-sm { width: min(92%, 720px); margin: 0 auto; }
 
 /* ─── NAV ─── */
 nav {
   position: fixed; top: 0; left: 0; right: 0; z-index: 100;
   background: rgba(255,255,255,0.88);
   backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
   border-bottom: 1px solid var(--line);
 }
 .nav-inner {
   display: flex; align-items: center; justify-content: space-between;
-  height: 56px; width: min(92%, 1080px); margin: 0 auto;
+  height: 52px; width: min(92%, 1080px); margin: 0 auto;
 }
 .nav-logo {
   font-family: 'DM Serif Display', serif;
-  font-size: 1.1rem; color: var(--ink); text-decoration: none; letter-spacing: -0.01em;
+  font-size: 1.05rem; color: var(--ink); text-decoration: none;
 }
 .nav-links { display: flex; gap: 2rem; list-style: none; }
 .nav-links a {
-  font-size: 0.8rem; font-weight: 500; color: var(--ink-soft);
+  font-size: 0.78rem; font-weight: 500; color: var(--ink-soft);
   text-decoration: none; letter-spacing: 0.06em; text-transform: uppercase;
   transition: color .2s;
 }
 .nav-links a:hover { color: var(--accent); }
 
-/* ─── HERO ─── */
+/* ─── HERO — full viewport, two columns ─── */
 #hero {
   min-height: 100vh;
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 0;
   align-items: stretch;
-  padding-top: 56px;
+  padding-top: 52px;
 }
 .hero-left {
   display: flex; flex-direction: column; justify-content: center;
-  padding: 80px 60px 80px 0;
+  padding: 48px 48px 48px 0;
   border-right: 1px solid var(--line);
+  padding-left: max(4vw, calc((100vw - 1080px)/2 + 4vw));
 }
 .hero-eyebrow {
   display: flex; align-items: center; gap: 8px;
-  font-size: 0.72rem; font-weight: 600; letter-spacing: 0.12em;
-  text-transform: uppercase; color: var(--accent); margin-bottom: 28px;
+  font-size: 0.68rem; font-weight: 600; letter-spacing: 0.12em;
+  text-transform: uppercase; color: var(--accent); margin-bottom: 20px;
 }
-.eyebrow-dot {
-  width: 6px; height: 6px; border-radius: 50%; background: var(--accent);
-}
+.eyebrow-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--accent); }
 .hero-name {
   font-family: 'DM Serif Display', serif;
-  font-size: clamp(3rem, 6vw, 5.5rem);
-  line-height: 1.0;
-  color: var(--ink);
-  letter-spacing: -0.02em;
-  margin-bottom: 24px;
+  font-size: clamp(2.8rem, 5.5vw, 5rem);
+  line-height: 1.0; color: var(--ink);
+  letter-spacing: -0.02em; margin-bottom: 16px;
 }
 .hero-name em { font-style: italic; color: var(--accent); }
 .hero-tagline {
-  font-size: 1.0rem; color: var(--ink-soft); max-width: 400px; margin-bottom: 40px; line-height: 1.7;
+  font-size: 0.9rem; color: var(--ink-soft); max-width: 380px;
+  margin-bottom: 28px; line-height: 1.65;
 }
-.hero-ctas { display: flex; gap: 12px; flex-wrap: wrap; }
+.hero-ctas { display: flex; gap: 10px; flex-wrap: wrap; }
 .btn {
   display: inline-flex; align-items: center; gap: 8px;
-  padding: 12px 24px; border-radius: var(--radius-sm);
-  font-size: 0.85rem; font-weight: 600; text-decoration: none; transition: all .2s;
-  border: 1.5px solid transparent; white-space: nowrap;
+  padding: 10px 20px; border-radius: var(--radius-sm);
+  font-size: 0.82rem; font-weight: 600; text-decoration: none;
+  transition: all .2s; border: 1.5px solid transparent; white-space: nowrap;
 }
-.btn-primary {
-  background: var(--accent); color: white; border-color: var(--accent);
-}
-.btn-primary:hover { background: #0f28cc; border-color: #0f28cc; transform: translateY(-1px); }
-.btn-outline {
-  background: transparent; color: var(--ink); border-color: var(--line);
-}
+.btn-primary { background: var(--accent); color: white; border-color: var(--accent); }
+.btn-primary:hover { background: #0f28cc; transform: translateY(-1px); }
+.btn-outline { background: transparent; color: var(--ink); border-color: var(--line); }
 .btn-outline:hover { border-color: var(--ink-soft); transform: translateY(-1px); }
 
+/* ─── HERO RIGHT — about snapshot ─── */
 .hero-right {
   display: flex; flex-direction: column; justify-content: center;
-  padding: 80px 0 80px 60px; gap: 20px;
+  padding: 48px 0 48px 48px;
+  padding-right: max(4vw, calc((100vw - 1080px)/2 + 4vw));
+  gap: 20px;
 }
-.stat-card {
-  border: 1px solid var(--line); border-radius: var(--radius);
-  padding: 24px 28px; background: var(--surface);
-  transition: border-color .2s, transform .2s;
-}
-.stat-card:hover { border-color: var(--accent); transform: translateX(4px); }
-.stat-card .label {
-  font-size: 0.7rem; font-weight: 600; text-transform: uppercase;
-  letter-spacing: 0.1em; color: var(--ink-mute); margin-bottom: 8px;
-}
-.stat-card .value {
-  font-family: 'DM Serif Display', serif; font-size: 2rem;
-  color: var(--ink); line-height: 1.1; margin-bottom: 4px;
-}
-.stat-card .sub {
-  font-size: 0.78rem; color: var(--ink-soft);
-}
-.stat-card.gold-card {
-  background: var(--gold-soft); border-color: #e8c67a;
-}
-.stat-card.gold-card .value { color: var(--gold); }
-.stat-card.gold-card .label { color: #b07a22; }
 
-/* ─── SECTIONS ─── */
-section { padding: 100px 0; }
-section:nth-child(even) { background: var(--surface-2); }
+/* CFA journey strip */
+.cfa-strip {
+  display: grid; grid-template-columns: 1fr 1fr 1fr;
+  border: 1px solid var(--line); border-radius: var(--radius); overflow: hidden;
+}
+.cfa-step {
+  padding: 12px 14px; border-right: 1px solid var(--line); text-align: center;
+}
+.cfa-step:last-child { border-right: none; }
+.cfa-step .cs-year { font-family: var(--mono); font-size: 0.6rem; color: var(--ink-mute); margin-bottom: 3px; }
+.cfa-step .cs-label { font-size: 0.8rem; font-weight: 600; color: var(--ink); }
+.cfa-step .cs-status { font-size: 0.65rem; color: var(--ink-mute); margin-top: 2px; }
+.cfa-step.active { background: var(--gold-soft); }
+.cfa-step.active .cs-label { color: var(--gold); }
+.cfa-step.active .cs-status { color: var(--gold); font-weight: 600; }
 
-.section-meta {
-  display: flex; align-items: center; gap: 12px; margin-bottom: 16px;
+/* About blurb */
+.hero-blurb {
+  font-size: 0.85rem; color: var(--ink-soft); line-height: 1.75;
 }
-.section-num {
-  font-family: var(--mono); font-size: 0.7rem; color: var(--ink-mute); letter-spacing: 0.05em;
-}
-.section-rule { height: 1px; flex: 1; background: var(--line); max-width: 60px; }
-.section-h {
-  font-family: 'DM Serif Display', serif;
-  font-size: clamp(1.8rem, 3.5vw, 2.8rem);
-  line-height: 1.1; letter-spacing: -0.02em;
-  color: var(--ink); margin-bottom: 16px;
-}
-.section-sub { font-size: 0.95rem; color: var(--ink-soft); margin-bottom: 56px; max-width: 520px; }
+.hero-blurb strong { color: var(--ink); font-weight: 600; }
 
-/* ─── ABOUT ─── */
-.about-grid { display: grid; grid-template-columns: 3fr 2fr; gap: 60px; align-items: start; }
-.about-body p { font-size: 1.0rem; color: var(--ink-soft); margin-bottom: 20px; line-height: 1.8; }
-.about-body p strong { color: var(--ink); font-weight: 600; }
-.about-sidebar { display: flex; flex-direction: column; gap: 20px; }
-.skill-block { border-left: 2px solid var(--accent); padding: 16px 20px; background: var(--accent-soft); border-radius: 0 var(--radius-sm) var(--radius-sm) 0; }
-.skill-block .sk-label { font-size: 0.72rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.1em; color: var(--accent); margin-bottom: 8px; }
-.skill-block .sk-list { font-size: 0.82rem; color: var(--ink-soft); line-height: 1.9; }
+/* Skills two-col */
+.skills-cols {
+  display: grid; grid-template-columns: 1fr 1fr; gap: 12px;
+}
+.skill-block {
+  border-left: 2px solid var(--accent); padding: 10px 14px;
+  background: var(--accent-soft); border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+}
+.skill-block .sk-label {
+  font-size: 0.62rem; font-weight: 700; text-transform: uppercase;
+  letter-spacing: 0.1em; color: var(--accent); margin-bottom: 6px;
+}
+.skill-block .sk-list { font-size: 0.75rem; color: var(--ink-soft); line-height: 1.8; }
 
-/* ─── RESEARCH CARDS ─── */
-.reports-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px; }
-.report-card {
-  border: 1px solid var(--line); border-radius: var(--radius);
-  padding: 28px; background: var(--surface);
-  display: flex; flex-direction: column; gap: 12px;
-  transition: all .25s; position: relative; overflow: hidden;
+/* Cert count badge */
+.cert-badge {
+  display: flex; align-items: center; gap: 12px;
+  padding: 10px 16px; border: 1px solid var(--line); border-radius: var(--radius);
+  background: var(--surface-2);
 }
-.report-card::before {
-  content: ''; position: absolute; top: 0; left: 0;
-  width: 3px; height: 100%; background: var(--accent);
-  transform: scaleY(0); transform-origin: top;
-  transition: transform .25s;
+.cert-badge .cb-num {
+  font-family: 'DM Serif Display', serif; font-size: 1.6rem;
+  color: var(--ink); line-height: 1;
 }
-.report-card:hover { border-color: var(--accent); transform: translateY(-3px); box-shadow: 0 8px 24px rgba(26,60,255,0.08); }
-.report-card:hover::before { transform: scaleY(1); }
-.report-icon {
-  width: 40px; height: 40px; border-radius: 8px;
-  background: var(--accent-soft); display: flex; align-items: center; justify-content: center;
-}
-.report-icon svg { width: 20px; height: 20px; stroke: var(--accent); fill: none; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; }
-.report-card h3 { font-size: 1.0rem; font-weight: 600; color: var(--ink); }
-.report-card p { font-size: 0.83rem; color: var(--ink-soft); line-height: 1.6; flex: 1; }
-.tag {
-  display: inline-block; font-size: 0.7rem; font-weight: 600;
-  padding: 4px 10px; border-radius: 100px;
-  background: var(--surface-3); color: var(--ink-soft); letter-spacing: 0.04em;
-}
-.tag.coming { background: var(--gold-soft); color: var(--gold); }
-.report-link { font-size: 0.82rem; font-weight: 600; color: var(--accent); text-decoration: none; }
-.report-link:hover { text-decoration: underline; }
-
-/* ─── FEATURED ─── */
-.featured-box {
-  border: 1px solid var(--line); border-radius: var(--radius);
-  padding: 48px; background: var(--surface);
-  display: grid; grid-template-columns: 1fr 1fr; gap: 48px; align-items: center;
-}
-.featured-box .big-label {
-  font-family: var(--mono); font-size: 0.7rem; color: var(--ink-mute);
-  text-transform: uppercase; letter-spacing: 0.12em; margin-bottom: 16px;
-}
-.featured-box h3 {
-  font-family: 'DM Serif Display', serif;
-  font-size: 2rem; line-height: 1.15; letter-spacing: -0.02em;
-  color: var(--ink); margin-bottom: 16px;
-}
-.featured-box p { font-size: 0.9rem; color: var(--ink-soft); line-height: 1.7; margin-bottom: 28px; }
-.featured-placeholder {
-  background: var(--surface-3); border-radius: var(--radius);
-  aspect-ratio: 4/3; display: flex; flex-direction: column;
-  align-items: center; justify-content: center; gap: 12px;
-  border: 1.5px dashed var(--line); color: var(--ink-mute);
-}
-.featured-placeholder svg { width: 32px; height: 32px; stroke: currentColor; fill: none; stroke-width: 1.5; }
-.featured-placeholder span { font-size: 0.78rem; font-weight: 500; }
-
-/* ─── QUALIFICATIONS ─── */
-.quals-list { display: flex; flex-direction: column; gap: 0; border: 1px solid var(--line); border-radius: var(--radius); overflow: hidden; }
-.qual-row {
-  display: grid; grid-template-columns: auto 1fr auto;
-  gap: 24px; align-items: center; padding: 24px 32px;
-  border-bottom: 1px solid var(--line); background: var(--surface);
-  transition: background .15s;
-}
-.qual-row:last-child { border-bottom: none; }
-.qual-row:hover { background: var(--surface-2); }
-.qual-index { font-family: var(--mono); font-size: 0.7rem; color: var(--ink-mute); }
-.qual-info h4 { font-size: 0.95rem; font-weight: 600; color: var(--ink); }
-.qual-info p { font-size: 0.8rem; color: var(--ink-soft); }
-.qual-badge {
-  font-size: 0.68rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em;
-  padding: 5px 12px; border-radius: 100px; white-space: nowrap;
-}
-.badge-active { background: #dcfce7; color: #15803d; }
-.badge-cleared { background: #e0e7ff; color: #4338ca; }
-.badge-cert { background: var(--surface-3); color: var(--ink-soft); }
-
-/* ─── CERTS GRID ─── */
-.certs-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 16px; }
-.cert-card {
-  border: 1px solid var(--line); border-radius: var(--radius);
-  padding: 22px 24px; background: var(--surface);
-  display: flex; flex-direction: column; gap: 8px;
-  transition: all .2s;
-}
-.cert-card:hover { border-color: var(--ink-soft); transform: translateY(-2px); }
-.cert-issuer { font-size: 0.68rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; color: var(--ink-mute); }
-.cert-name { font-size: 0.92rem; font-weight: 600; color: var(--ink); line-height: 1.3; }
-.cert-code { font-family: var(--mono); font-size: 0.7rem; color: var(--ink-mute); }
-.cert-link { font-size: 0.78rem; font-weight: 600; color: var(--accent); text-decoration: none; }
-.cert-link:hover { text-decoration: underline; }
-
-/* ─── CONTACT ─── */
-#contact { background: var(--ink); }
-#contact .section-h { color: white; }
-#contact .section-num { color: rgba(255,255,255,0.3); }
-#contact .section-rule { background: rgba(255,255,255,0.15); }
-#contact .section-sub { color: rgba(255,255,255,0.55); }
-.contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center; }
-.contact-left p { font-size: 1.0rem; color: rgba(255,255,255,0.6); line-height: 1.8; margin-bottom: 32px; }
-.contact-ctas { display: flex; flex-direction: column; gap: 12px; }
-.contact-item {
-  display: flex; align-items: center; gap: 16px;
-  padding: 20px 24px; border-radius: var(--radius);
-  border: 1px solid rgba(255,255,255,0.1); text-decoration: none;
-  transition: all .2s; background: rgba(255,255,255,0.04);
-}
-.contact-item:hover { background: rgba(255,255,255,0.08); border-color: rgba(255,255,255,0.2); transform: translateX(4px); }
-.contact-item-icon {
-  width: 40px; height: 40px; border-radius: 8px;
-  background: rgba(255,255,255,0.1); display: flex; align-items: center; justify-content: center; flex-shrink: 0;
-}
-.contact-item-icon svg { width: 18px; height: 18px; stroke: white; fill: none; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; }
-.contact-item-label { font-size: 0.72rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.1em; color: rgba(255,255,255,0.4); margin-bottom: 2px; }
-.contact-item-val { font-size: 0.88rem; font-weight: 500; color: white; }
-.contact-right { display: flex; flex-direction: column; gap: 20px; }
-.contact-stat {
-  border-left: 2px solid rgba(255,255,255,0.15); padding: 16px 24px;
-}
-.contact-stat .num {
-  font-family: 'DM Serif Display', serif; font-size: 2.2rem; color: white; letter-spacing: -0.02em;
-}
-.contact-stat .desc { font-size: 0.78rem; color: rgba(255,255,255,0.4); margin-top: 2px; }
-
-/* ─── FOOTER ─── */
-footer {
-  padding: 32px 0; text-align: center;
-  font-size: 0.75rem; color: var(--ink-mute);
-  border-top: 1px solid var(--line);
-}
+.cert-badge .cb-desc { font-size: 0.75rem; color: var(--ink-soft); line-height: 1.4; }
+.cert-badge .cb-desc strong { color: var(--ink); }
 
 /* ─── TICKER ─── */
 .ticker-wrap {
   overflow: hidden; border-top: 1px solid var(--line); border-bottom: 1px solid var(--line);
-  background: var(--surface-2); padding: 10px 0;
+  background: var(--surface-2); padding: 9px 0;
 }
 .ticker-track {
-  display: flex; gap: 0; width: max-content;
+  display: flex; width: max-content;
   animation: ticker 30s linear infinite;
 }
 .ticker-track:hover { animation-play-state: paused; }
@@ -319,31 +177,111 @@ footer {
 }
 .ticker-item {
   display: flex; align-items: center; gap: 8px;
-  padding: 0 32px; font-size: 0.72rem; font-weight: 600;
+  padding: 0 28px; font-size: 0.7rem; font-weight: 600;
   white-space: nowrap; letter-spacing: 0.05em; color: var(--ink-soft);
 }
-.ticker-item .t-dot {
-  width: 4px; height: 4px; border-radius: 50%;
-  background: var(--accent); flex-shrink: 0;
+.ticker-item .t-dot { width: 4px; height: 4px; border-radius: 50%; background: var(--accent); flex-shrink: 0; }
+
+/* ─── SECTIONS ─── */
+section { padding: 80px 0; }
+section:nth-child(even) { background: var(--surface-2); }
+
+.section-meta { display: flex; align-items: center; gap: 12px; margin-bottom: 12px; }
+.section-num { font-family: var(--mono); font-size: 0.7rem; color: var(--ink-mute); }
+.section-rule { height: 1px; flex: 1; background: var(--line); max-width: 60px; }
+.section-h {
+  font-family: 'DM Serif Display', serif;
+  font-size: clamp(1.6rem, 3vw, 2.4rem);
+  line-height: 1.1; letter-spacing: -0.02em;
+  color: var(--ink); margin-bottom: 12px;
 }
+.section-sub { font-size: 0.9rem; color: var(--ink-soft); margin-bottom: 40px; max-width: 520px; }
+
+/* ─── RESEARCH CARDS ─── */
+.reports-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 16px; }
+.report-card {
+  border: 1px solid var(--line); border-radius: var(--radius);
+  padding: 24px; background: var(--surface);
+  display: flex; flex-direction: column; gap: 10px;
+  transition: all .25s; position: relative; overflow: hidden;
+}
+.report-card::before {
+  content: ''; position: absolute; top: 0; left: 0;
+  width: 3px; height: 100%; background: var(--accent);
+  transform: scaleY(0); transform-origin: top; transition: transform .25s;
+}
+.report-card:hover { border-color: var(--accent); transform: translateY(-3px); box-shadow: 0 8px 24px rgba(26,60,255,0.08); }
+.report-card:hover::before { transform: scaleY(1); }
+.report-icon {
+  width: 36px; height: 36px; border-radius: 8px;
+  background: var(--accent-soft); display: flex; align-items: center; justify-content: center;
+}
+.report-icon svg { width: 18px; height: 18px; stroke: var(--accent); fill: none; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; }
+.report-card h3 { font-size: 0.95rem; font-weight: 600; color: var(--ink); }
+.report-card p { font-size: 0.8rem; color: var(--ink-soft); line-height: 1.6; flex: 1; }
+.tag {
+  display: inline-block; font-size: 0.68rem; font-weight: 600;
+  padding: 3px 10px; border-radius: 100px;
+  background: var(--surface-3); color: var(--ink-soft);
+}
+.tag.coming { background: var(--gold-soft); color: var(--gold); }
+.report-link { font-size: 0.8rem; font-weight: 600; color: var(--accent); text-decoration: none; }
+.report-link:hover { text-decoration: underline; }
+.featured-card { border-color: var(--accent); background: var(--accent-soft); }
+.featured-card::before { transform: scaleY(1); }
+.tag.featured-tag { background: var(--accent); color: white; }
+
+/* ─── CERTS ─── */
+.certs-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 14px; }
+.cert-card {
+  border: 1px solid var(--line); border-radius: var(--radius);
+  padding: 18px 20px; background: var(--surface);
+  display: flex; flex-direction: column; gap: 6px; transition: all .2s;
+}
+.cert-card:hover { border-color: var(--ink-soft); transform: translateY(-2px); }
+.cert-issuer { font-size: 0.65rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; color: var(--ink-mute); }
+.cert-name { font-size: 0.88rem; font-weight: 600; color: var(--ink); line-height: 1.3; }
+.cert-code { font-family: var(--mono); font-size: 0.67rem; color: var(--ink-mute); }
+.cert-link { font-size: 0.75rem; font-weight: 600; color: var(--accent); text-decoration: none; }
+.cert-link:hover { text-decoration: underline; }
+
+/* ─── FOOTER ─── */
+footer {
+  padding: 36px 0;
+  background: var(--ink);
+}
+.footer-inner {
+  display: flex; flex-direction: column; align-items: center; gap: 14px; text-align: center;
+}
+.footer-name {
+  font-family: 'DM Serif Display', serif; font-size: 1.05rem; color: white;
+}
+.footer-contacts {
+  display: flex; gap: 28px; flex-wrap: wrap; justify-content: center;
+}
+.footer-contact-item {
+  display: flex; align-items: center; gap: 7px;
+  text-decoration: none; color: rgba(255,255,255,0.5);
+  font-size: 0.8rem; transition: color .2s;
+}
+.footer-contact-item:hover { color: white; }
+.footer-contact-item svg { width: 13px; height: 13px; stroke: currentColor; fill: none; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; flex-shrink: 0; }
+.footer-tagline { font-size: 0.68rem; color: rgba(255,255,255,0.22); }
 
 /* ─── RESPONSIVE ─── */
 @media (max-width: 900px) {
   #hero { grid-template-columns: 1fr; }
-  .hero-left { padding: 60px 0 40px; border-right: none; border-bottom: 1px solid var(--line); }
-  .hero-right { padding: 40px 0 60px; }
-  .about-grid { grid-template-columns: 1fr; }
+  .hero-left { padding: 48px 0 32px; border-right: none; border-bottom: 1px solid var(--line); padding-left: 4vw; }
+  .hero-right { padding: 32px 0 48px; padding-left: 4vw; }
   .featured-box { grid-template-columns: 1fr; }
-  .contact-grid { grid-template-columns: 1fr; }
-  .qual-row { grid-template-columns: 1fr auto; }
-  .qual-index { display: none; }
+  .skills-cols { grid-template-columns: 1fr; }
 }
 @media (max-width: 600px) {
   .nav-links { display: none; }
-  section { padding: 64px 0; }
-  .hero-name { font-size: 2.8rem; }
+  section { padding: 56px 0; }
+  .hero-name { font-size: 2.6rem; }
+  .footer-contacts { gap: 16px; flex-direction: column; align-items: center; }
 }
-
 </style>
 </head>
 <body>
@@ -353,57 +291,89 @@ footer {
   <div class="nav-inner">
     <a class="nav-logo" href="#hero">Parth Goyal</a>
     <ul class="nav-links">
-      <li><a href="#about">About</a></li>
       <li><a href="#research">Research</a></li>
-      <li><a href="#contact">Contact</a></li>
+      <li><a href="#certs">Certifications</a></li>
     </ul>
   </div>
 </nav>
 
 <!-- HERO -->
 <section id="hero">
-  <div class="wrap" style="display:contents;">
-    <div class="hero-left" style="padding-left: max(4vw, calc((100vw - 1080px)/2 + 4vw));">
-      <div class="hero-eyebrow">
-        <span class="eyebrow-dot"></span>
-        Available for equity research roles
+  <div class="hero-left">
+    <div class="hero-eyebrow">
+      <span class="eyebrow-dot"></span>
+      Available for equity research roles
+    </div>
+    <h1 class="hero-name">Parth<br><em>Goyal</em></h1>
+    <p class="hero-tagline">CFA Level III candidate building deep expertise in fundamental analysis, valuation, and capital markets — from Jaipur to the markets.</p>
+    <div class="hero-ctas">
+      <a class="btn btn-primary" href="PARTH GOYAL RESUME.pdf" target="_blank">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+        Download Resume
+      </a>
+      <a class="btn btn-outline" href="https://linkedin.com/in/9parthgoyal" target="_blank">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
+        LinkedIn
+      </a>
+    </div>
+  </div>
+
+  <div class="hero-right">
+
+    <!-- CFA Progress -->
+    <div class="cfa-strip">
+      <div class="cfa-step">
+        <div class="cs-year">2024</div>
+        <div class="cs-label">CFA Level I</div>
+        <div class="cs-status">Cleared ✓</div>
       </div>
-      <h1 class="hero-name">Parth<br><em>Goyal</em></h1>
-      <p class="hero-tagline">CFA Level III candidate building deep expertise in fundamental analysis, valuation, and capital markets — from Jaipur to the markets.</p>
-      <div class="hero-ctas">
-        <a class="btn btn-primary" href="PARTH GOYAL RESUME.pdf" target="_blank">
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
-          Download Resume
-        </a>
-        <a class="btn btn-outline" href="https://linkedin.com/in/9parthgoyal" target="_blank">
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
-          LinkedIn
-        </a>
+      <div class="cfa-step">
+        <div class="cs-year">2025</div>
+        <div class="cs-label">CFA Level II</div>
+        <div class="cs-status">Cleared ✓</div>
+      </div>
+      <div class="cfa-step active">
+        <div class="cs-year">Aug 2026</div>
+        <div class="cs-label">CFA Level III</div>
+        <div class="cs-status">In progress →</div>
       </div>
     </div>
-    <div class="hero-right" style="padding-right: max(4vw, calc((100vw - 1080px)/2 + 4vw));">
-      <div class="stat-card gold-card">
-        <div class="label">CFA Program Progress</div>
-        <div class="value">III</div>
-        <div class="sub">Level III Candidate · August 2026 Exam</div>
+
+    <!-- About blurb -->
+    <p class="hero-blurb">Finance student from <strong>Jaipur</strong> grinding through the CFA Program while building real skills on the side — not waiting for a job title to start doing the work. Interested in Indian equities, especially smaller overlooked companies where the market hasn't done the work yet.</p>
+
+    <!-- Skills -->
+    <div class="skills-cols">
+      <div class="skill-block">
+        <div class="sk-label">Valuation</div>
+        <div class="sk-list">DCF · DDM<br>Comps · Precedents<br>EV/EBITDA · P/E</div>
       </div>
-      <div class="stat-card">
-        <div class="label">Certifications Held</div>
-        <div class="value">10+</div>
-        <div class="sub">NISM · NSE Academy · CFA Institute</div>
+      <div class="skill-block">
+        <div class="sk-label">Research</div>
+        <div class="sk-list">FSA · Industry Analysis<br>Earnings Modelling<br>SEBI Filings · DRHP</div>
       </div>
-      <div class="stat-card">
-        <div class="label">Core Focus Areas</div>
-        <div class="value" style="font-size:1.1rem; line-height:1.5;">Equity Research & Valuation</div>
-        <div class="sub">DCF · Comps · Portfolio Management · FSA</div>
+      <div class="skill-block">
+        <div class="sk-label">Tools</div>
+        <div class="sk-list">Excel (Advanced)<br>Python (Finance)<br>Screener.in</div>
+      </div>
+      <div class="skill-block">
+        <div class="sk-label">Credentials</div>
+        <div class="sk-list">NISM-XV · NISM-VIII<br>NSE Academy (7+)<br>Valuation School</div>
       </div>
     </div>
+
+    <!-- Cert count -->
+    <div class="cert-badge">
+      <div class="cb-num">10+</div>
+      <div class="cb-desc"><strong>Professional certifications</strong> across research analysis, equity derivatives, technical analysis & portfolio management</div>
+    </div>
+
   </div>
 </section>
 
 <!-- TICKER -->
 <div class="ticker-wrap" aria-hidden="true">
-  <div class="ticker-track" id="ticker">
+  <div class="ticker-track">
     <div class="ticker-item"><span class="t-dot"></span>Equity Research</div>
     <div class="ticker-item"><span class="t-dot"></span>DCF Valuation</div>
     <div class="ticker-item"><span class="t-dot"></span>Financial Statement Analysis</div>
@@ -425,125 +395,60 @@ footer {
   </div>
 </div>
 
-<!-- ABOUT -->
-<section id="about">
-  <div class="wrap">
-    <div class="section-meta">
-      <span class="section-num">01</span>
-      <div class="section-rule"></div>
-    </div>
-    <h2 class="section-h">The Analyst Behind<br>the Numbers</h2>
-    <div class="about-grid">
-      <div class="about-body">
-        <p>I'm a finance professional based in <strong>Jaipur, Rajasthan</strong>, focused on building a rigorous foundation in equity research and investment analysis. My work is grounded in first-principles thinking — understanding a business before modelling it.</p>
-        <p>I've cleared <strong>CFA Levels I and II</strong> and am registered for the Level III exam in August 2026. I've also been CA Intermediate Candidate, which has given me strong command of financial accounting, taxation, and corporate law — tools that matter when you're reading an annual report, not just a summary.</p>
-        <p>My research approach combines <strong>fundamental analysis</strong>, detailed financial statement deep-dives, and DCF/comparables-based valuation. I'm interested in both large-cap coverage and identifying mispriced small/mid-cap opportunities in Indian equities.</p>
-        <p>This site is a living repository of my research output. Reports, theses, and industry work will be published here as they're completed.</p>
-      </div>
-      <div class="about-sidebar">
-        <div class="skill-block">
-          <div class="sk-label">Valuation Methods</div>
-          <div class="sk-list">Discounted Cash Flow (DCF)<br>Comparable Company Analysis<br>Precedent Transactions<br>Dividend Discount Model<br>EV/EBITDA, P/E, P/B multiples</div>
-        </div>
-        <div class="skill-block">
-          <div class="sk-label">Research Skills</div>
-          <div class="sk-list">Financial Statement Analysis<br>Industry & Competitive Analysis<br>Earnings Model Building<br>Investment Thesis Writing<br>Screener.in · Bloomberg concepts</div>
-        </div>
-        <div class="skill-block">
-          <div class="sk-label">Tools & Languages</div>
-          <div class="sk-list">Microsoft Excel (Advanced)<br>Python (Finance Applications)<br>NSE / BSE Data Sources<br>SEBI Filings & DRHP Analysis</div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- FEATURED -->
-<section id="featured" style="background: var(--surface-2);">
-  <div class="wrap">
-    <div class="section-meta">
-      <span class="section-num">02</span>
-      <div class="section-rule"></div>
-    </div>
-    <h2 class="section-h">Featured Research</h2>
-    <p class="section-sub">My highest-conviction investment thesis — a detailed, original research report with full valuation work, will be published here.</p>
-    <div class="featured-box">
-      <div>
-        <div class="big-label">Featured Thesis · Coming Soon</div>
-        <h3>Initiating Coverage:<br>High-Conviction Idea</h3>
-        <p>A deep-dive initiation report on an Indian-listed company — covering business model quality, competitive moat, earnings trajectory, and a DCF-backed target price. Built from scratch using publicly available filings, annual reports, and channel checks.</p>
-        <a class="btn btn-primary" href="#research">See All Research ↓</a>
-      </div>
-      <div class="featured-placeholder">
-        <svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>
-        <span>Report publishing soon</span>
-      </div>
-    </div>
-  </div>
-</section>
-
 <!-- RESEARCH REPORTS -->
 <section id="research">
   <div class="wrap">
     <div class="section-meta">
-      <span class="section-num">03</span>
+      <span class="section-num">01</span>
       <div class="section-rule"></div>
     </div>
     <h2 class="section-h">Research Reports</h2>
     <p class="section-sub">Original equity research, valuation models, and investment theses. All work is independent and based on publicly available information.</p>
     <div class="reports-grid">
 
-      <div class="report-card">
-        <div class="report-icon">
-          <svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/></svg>
+      <!-- FEATURED CARD -->
+      <div class="report-card featured-card">
+        <div style="display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:8px;">
+          <div class="report-icon"><svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/></svg></div>
+          <span class="tag featured-tag">Featured</span>
         </div>
         <h3>Company Initiation Report</h3>
-        <p>End-to-end company analysis: business model, competitive positioning, management quality assessment, and a full valuation with price target.</p>
+        <p>End-to-end company analysis: business model, competitive positioning, management quality, and a full valuation with price target. Built from scratch using public filings, annual reports, and channel checks.</p>
         <span class="tag coming">Coming Soon</span>
       </div>
 
       <div class="report-card">
-        <div class="report-icon">
-          <svg viewBox="0 0 24 24"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
-        </div>
+        <div class="report-icon"><svg viewBox="0 0 24 24"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg></div>
         <h3>DCF Valuation Model</h3>
-        <p>A detailed intrinsic value assessment using multi-scenario DCF, with explicit revenue build, margin bridge, WACC derivation, and sensitivity tables.</p>
+        <p>Multi-scenario DCF with revenue build, margin bridge, WACC derivation, and sensitivity tables.</p>
         <span class="tag coming">Coming Soon</span>
       </div>
 
       <div class="report-card">
-        <div class="report-icon">
-          <svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg>
-        </div>
+        <div class="report-icon"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg></div>
         <h3>Industry Research Note</h3>
-        <p>Sector-level analysis covering market structure, regulatory environment, competitive dynamics, and key stock selection frameworks within the industry.</p>
+        <p>Sector-level analysis covering market structure, regulatory environment, competitive dynamics, and stock selection frameworks.</p>
         <span class="tag coming">Coming Soon</span>
       </div>
 
       <div class="report-card">
-        <div class="report-icon">
-          <svg viewBox="0 0 24 24"><path d="M18 20V10M12 20V4M6 20v-6"/></svg>
-        </div>
+        <div class="report-icon"><svg viewBox="0 0 24 24"><path d="M18 20V10M12 20V4M6 20v-6"/></svg></div>
         <h3>Earnings Update Note</h3>
-        <p>Post-results flash note covering revenue/margin surprises, management commentary, key KPI movements, and a revised forward estimate with rating.</p>
+        <p>Post-results flash note covering revenue/margin surprises, management commentary, and revised forward estimates.</p>
         <span class="tag coming">Coming Soon</span>
       </div>
 
       <div class="report-card">
-        <div class="report-icon">
-          <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
-        </div>
+        <div class="report-icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg></div>
         <h3>Special Situation Report</h3>
-        <p>Event-driven opportunity analysis: spin-offs, demergers, turnarounds, or post-IPO mispricings where catalysts can unlock significant value.</p>
+        <p>Event-driven analysis: spin-offs, demergers, turnarounds, or post-IPO mispricings where catalysts unlock value.</p>
         <span class="tag coming">Coming Soon</span>
       </div>
 
       <div class="report-card">
-        <div class="report-icon">
-          <svg viewBox="0 0 24 24"><path d="M2 20h.01M7 20v-4M12 20v-8M17 20V8M22 4l-5 5-4-4L7 11"/></svg>
-        </div>
+        <div class="report-icon"><svg viewBox="0 0 24 24"><path d="M2 20h.01M7 20v-4M12 20v-8M17 20V8M22 4l-5 5-4-4L7 11"/></svg></div>
         <h3>Long-term Investment Thesis</h3>
-        <p>A multi-year thesis on a structural growth story — focused on what the market is underpricing and the time horizon over which value should be realised.</p>
+        <p>Multi-year thesis on a structural growth story — focused on what the market is underpricing and the time horizon for value realisation.</p>
         <span class="tag coming">Coming Soon</span>
       </div>
 
@@ -551,12 +456,11 @@ footer {
   </div>
 </section>
 
-
 <!-- CERTIFICATIONS -->
 <section id="certs">
   <div class="wrap">
     <div class="section-meta">
-      <span class="section-num">05</span>
+      <span class="section-num">02</span>
       <div class="section-rule"></div>
     </div>
     <h2 class="section-h">Certifications</h2>
@@ -569,70 +473,60 @@ footer {
         <div class="cert-code">NISM-Series-XV</div>
         <a class="cert-link" href="NISM-XV.pdf" target="_blank">View Certificate →</a>
       </div>
-
       <div class="cert-card">
         <div class="cert-issuer">NISM</div>
         <div class="cert-name">Equity Derivatives Certification</div>
         <div class="cert-code">NISM-Series-VIII</div>
         <a class="cert-link" href="NISM-VIII.pdf" target="_blank">View Certificate →</a>
       </div>
-
       <div class="cert-card">
         <div class="cert-issuer">NSE Academy</div>
         <div class="cert-name">Fundamental Analysis</div>
         <div class="cert-code">NSE Certification</div>
         <a class="cert-link" href="Fundamental_Analysis.pdf" target="_blank">View Certificate →</a>
       </div>
-
       <div class="cert-card">
         <div class="cert-issuer">NSE Academy</div>
         <div class="cert-name">Investment Analysis & Portfolio Management</div>
         <div class="cert-code">NSE Certification</div>
         <a class="cert-link" href="Investment Analysis.pdf" target="_blank">View Certificate →</a>
       </div>
-
       <div class="cert-card">
         <div class="cert-issuer">NSE Academy</div>
         <div class="cert-name">Technical Analysis</div>
         <div class="cert-code">NSE Certification</div>
         <a class="cert-link" href="Technical Analysis Module.pdf" target="_blank">View Certificate →</a>
       </div>
-
       <div class="cert-card">
         <div class="cert-issuer">NSE Academy</div>
         <div class="cert-name">Wealth Management</div>
         <div class="cert-code">NSE Certification</div>
         <a class="cert-link" href="Wealth Management Module.pdf" target="_blank">View Certificate →</a>
       </div>
-
       <div class="cert-card">
         <div class="cert-issuer">NSE Academy</div>
         <div class="cert-name">NCMP Level I</div>
         <div class="cert-code">NSE Capital Market Proficiency</div>
         <a class="cert-link" href="NCMP.jpg" target="_blank">View Certificate →</a>
       </div>
-
       <div class="cert-card">
         <div class="cert-issuer">NSE Academy</div>
         <div class="cert-name">Investment Analyst Champion</div>
         <div class="cert-code">NSE Competition Award</div>
-         <a class="cert-link" href="NACIACC.JPG" target="_blank">View Certificate →</a>
+        <a class="cert-link" href="NACIACC.JPG" target="_blank">View Certificate →</a>
       </div>
-
       <div class="cert-card">
         <div class="cert-issuer">NSE Academy</div>
         <div class="cert-name">Investment Analyst Pro</div>
         <div class="cert-code">NSE Certification</div>
-         <a class="cert-link" href="NACIAPC.jpg" target="_blank">View Certificate →</a>
+        <a class="cert-link" href="NACIAPC.jpg" target="_blank">View Certificate →</a>
       </div>
-
       <div class="cert-card">
         <div class="cert-issuer">The Valuation School</div>
         <div class="cert-name">Equity Research Cohort</div>
         <div class="cert-code">Professional Programme</div>
-       <a class="cert-link" href="" target="_blank">View Certificate →</a>
+        <a class="cert-link" href="" target="_blank">View Certificate →</a>
       </div>
-
       <div class="cert-card">
         <div class="cert-issuer">The Valuation School</div>
         <div class="cert-name">Technical Analysis Workshop</div>
@@ -644,60 +538,27 @@ footer {
   </div>
 </section>
 
-<!-- CONTACT -->
-<section id="contact">
-  <div class="wrap">
-    <div class="section-meta">
-      <span class="section-num">06</span>
-      <div class="section-rule"></div>
-    </div>
-    <h2 class="section-h">Let's Connect</h2>
-    <p class="section-sub">Open to equity research roles, internships, and conversations about markets. Based in Jaipur — open to relocation.</p>
-    <div class="contact-grid">
-      <div class="contact-left">
-        <p>If you're a recruiter, portfolio manager, or fellow analyst — I'd love to talk. I'm particularly interested in fundamental research roles at asset managers, brokerages, and investment banks covering Indian equities.</p>
-        <div class="contact-ctas">
-          <a class="contact-item" href="https://linkedin.com/in/9parthgoyal" target="_blank">
-            <div class="contact-item-icon">
-              <svg viewBox="0 0 24 24"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
-            </div>
-            <div>
-              <div class="contact-item-label">LinkedIn</div>
-              <div class="contact-item-val">linkedin.com/in/9parthgoyal</div>
-            </div>
-          </a>
-          <a class="contact-item" href="PARTH GOYAL RESUME.pdf" target="_blank">
-            <div class="contact-item-icon">
-              <svg viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
-            </div>
-            <div>
-              <div class="contact-item-label">Resume</div>
-              <div class="contact-item-val">Download PDF</div>
-            </div>
-          </a>
-        </div>
-      </div>
-      <div class="contact-right">
-        <div class="contact-stat">
-          <div class="num">III</div>
-          <div class="desc">CFA levels completed or in progress</div>
-        </div>
-        <div class="contact-stat">
-          <div class="num">10+</div>
-          <div class="desc">Professional certifications across research, derivatives & portfolio management</div>
-        </div>
-        <div class="contact-stat">
-          <div class="num">2026</div>
-          <div class="desc">Expected CFA charterholder (post-August exam & work experience)</div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
+<!-- FOOTER -->
 <footer>
   <div class="wrap">
-    <p>Parth Goyal · Jaipur, Rajasthan · Built to show work, not just credentials.</p>
+    <div class="footer-inner">
+      <div class="footer-name">Parth Goyal</div>
+      <div class="footer-contacts">
+        <a class="footer-contact-item" href="mailto:9parthgoyal@gmail.com">
+          <svg viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+          9parthgoyal@gmail.com
+        </a>
+        <a class="footer-contact-item" href="tel:+917340072084">
+          <svg viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 13a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.6 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 9.91a16 16 0 0 0 6.29 6.29l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+          +91 73400 72084
+        </a>
+        <a class="footer-contact-item" href="https://linkedin.com/in/9parthgoyal" target="_blank">
+          <svg viewBox="0 0 24 24"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
+          linkedin.com/in/9parthgoyal
+        </a>
+      </div>
+      <div class="footer-tagline">Jaipur, Rajasthan · Open to relocation · Built to show work, not just credentials.</div>
+    </div>
   </div>
 </footer>
 
